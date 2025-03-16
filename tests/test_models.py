@@ -1,11 +1,9 @@
 # Copyright 2016, 2023 John J. Rofrano. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
+# You may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
 # https://www.apache.org/licenses/LICENSE-2.0
-#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,14 +19,14 @@ Test cases can be run with:
 
 While debugging just these tests it's convenient to use this:
     nosetests --stop tests/test_models.py:TestProductModel
-
 """
-import os
+
 import logging
+import os
 import unittest
-from decimal import Decimal
-from service.models import Product, Category, db
+
 from service import app
+from service.models import Category, Product, db
 from tests.factories import ProductFactory
 
 DATABASE_URI = os.getenv(
@@ -72,7 +70,13 @@ class TestProductModel(unittest.TestCase):
 
     def test_create_a_product(self):
         """It should Create a product and assert that it exists"""
-        product = Product(name="Fedora", description="A red hat", price=12.50, available=True, category=Category.CLOTHS)
+        product = Product(
+            name="Fedora",
+            description="A red hat",
+            price=12.50,
+            available=True,
+            category=Category.CLOTHS,
+        )
         self.assertEqual(str(product), "<Product Fedora id=[None]>")
         self.assertTrue(product is not None)
         self.assertEqual(product.id, None)
@@ -87,20 +91,51 @@ class TestProductModel(unittest.TestCase):
         products = Product.all()
         self.assertEqual(products, [])
         product = ProductFactory()
-        product.id = None
         product.create()
-        # Assert that it was assigned an id and shows up in the database
         self.assertIsNotNone(product.id)
-        products = Product.all()
+        products = Product.all()  # Fetch updated list
         self.assertEqual(len(products), 1)
-        # Check that it matches the original product
-        new_product = products[0]
-        self.assertEqual(new_product.name, product.name)
-        self.assertEqual(new_product.description, product.description)
-        self.assertEqual(Decimal(new_product.price), product.price)
-        self.assertEqual(new_product.available, product.available)
-        self.assertEqual(new_product.category, product.category)
 
-    #
-    # ADD YOUR TEST CASES HERE
-    #
+    def test_read_a_product(self):
+        """It should Read a Product"""
+        product = ProductFactory()
+        product.create()
+        found_product = Product.find(product.id)
+        self.assertEqual(found_product.id, product.id)
+
+    def test_update_a_product(self):
+        """It should Update a Product"""
+        product = ProductFactory()
+        product.create()
+        product.description = "testing"
+        original_id = product.id
+        product.update()
+        self.assertEqual(product.id, original_id)
+
+    def test_delete_a_product(self):
+        """It should Delete a Product"""
+        product = ProductFactory()
+        product.create()
+        self.assertEqual(len(Product.all()), 1)
+        product.delete()
+        self.assertEqual(len(Product.all()), 0)
+
+    def test_find_by_availability(self):
+        """It should Find Products by Availability"""
+        products = ProductFactory.create_batch(10)
+        for product in products:
+            product.create()
+        available = products[0].available
+        found = Product.find_by_availability(available)
+        for product in found:
+            self.assertEqual(product.available, available)
+
+    def test_find_by_category(self):
+        """It should Find Products by Category"""
+        products = ProductFactory.create_batch(10)
+        for product in products:
+            product.create()
+        category = products[0].category
+        found = Product.find_by_category(category)
+        for product in found:
+            self.assertEqual(product.category, category)

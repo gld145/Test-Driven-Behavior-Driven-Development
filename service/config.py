@@ -1,13 +1,12 @@
 """
 Global Configuration for Application
 """
-import os
 import logging
+import os
 
 # Get configuration from environment
 DATABASE_URI = os.getenv(
-    "DATABASE_URI",
-    "postgresql://postgres:postgres@localhost:5432/postgres"
+    "DATABASE_URI", "postgresql://postgres:postgres@localhost:5432/postgres"
 )
 
 # Configure SQLAlchemy
