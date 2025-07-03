@@ -1,49 +1,53 @@
-# TDD / BDD Final Project Template
+# Building Resilient Microservices with TDD & BDD – by Guy Landry Djolaud
 
-This repository contains the template to be used for the Final Project for the Coursera course **Introduction to TDD/BDD**.
+This repository documents my final project for the Coursera course *Introduction to TDD/BDD*, where I applied real-world testing practices using **Python**, **TDD (Test-Driven Development)**, and **BDD (Behavior-Driven Development)** principles to build a robust microservice API.
 
-## Usage
+---
 
-This repository is to be used as a template to create your own repository in your own GitHub account. No need to Fork it as it has been set up as a Template. This will avoid confusion when making Pull Requests in the future.
+## Project Purpose
 
-From the GitHub **Code** page, press the green **Use this template** button to create your own repository from this template. 
+This project demonstrates my ability to:
 
-Name your repo: `tdd-bdd-final-project`.
+- Design features with user behavior in mind
+- Write clean, testable, and maintainable Python code
+- Apply TDD to ensure code stability before implementation
+- Use BDD to define clear, business-readable acceptance criteria
 
-## Setup
+---
 
-After entering the lab environment you will need to run the `setup.sh` script in the `./bin` folder to install the prerequisite software.
+## Key Features
+
+- Python microservice architecture
+- TDD with unit tests for routes and models
+- BDD with Gherkin-based scenarios and steps
+- Modular and scalable folder structure
+- Dev environment setup with `setup.sh`
+- Easily portable for integration in CI/CD pipelines
+
+---
+
+## Project Structure
+
+- bin/ # 🛠️ Setup scripts (e.g., environment configuration)
+- service/ # 🧠 Business logic & API routes (core microservice logic)
+  - routes.py # Main API route handlers
+- tests/ # 🧪 Unit tests for TDD (Test-Driven Development)
+  - test_models.py # Model-level unit tests
+  - test_routes.py # Route-level unit tests
+- features/  # 📘 BDD Scenarios & Step Definitions
+  - products.feature  # Gherkin-based feature scenarios
+  - steps/ # Python step implementations
+- load_steps.py
+- flaskenv # ⚙️ Flask environment variables
+- Makefile # 🧾 Automation commands for setup/test/deploy
+- README.md # 📄 Project documentation
+
+---
+
+## Project Setup
+
+To initialize the environment:
 
 ```bash
 bash bin/setup.sh
-```
-
-Then you must exit the shell and start a new one for the Python virtual environment to be activated.
-
-```bash
 exit
-```
-
-## Tasks
-
-In this project you will use good Test Driven Development (TDD) and Behavior Driven Development (BDD) techniques to write TDD test cases, BDD scenarios, and code, updating the following files:
-
-```bash
-tests/test_models.py
-tests/test_routes.py
-service/routes.py
-features/products.feature
-features/steps/load_steps.py
-```
-
-You will be given partial implementations in each of these files to get you started. Use those implementations as examples of the code you should write.
-
-## License
-
-Licensed under the Apache License. See [LICENSE](/LICENSE)
-
-## Author
-
-John Rofrano, Senior Technical Staff Member, DevOps Champion, @ IBM Research
-
-## <h3 align="center"> © IBM Corporation 2023. All rights reserved. <h3/>
