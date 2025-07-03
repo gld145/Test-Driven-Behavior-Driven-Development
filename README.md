@@ -1,3 +1,15 @@
+# Test-Driven & Behavior-Driven Development – by Guy Landry Djolaud
+
+[![Project Type](https://img.shields.io/badge/Project-Coursera%20Final%20Project-blue)]()
+[![Testing Methodology](https://img.shields.io/badge/Testing-TDD%20%7C%20BDD-orange)]()
+[![Built With](https://img.shields.io/badge/Language-Python-blue.svg)]()
+[![Author](https://img.shields.io/badge/Author-Guy%20Landry%20Djolaud-brightgreen)]()
+[![License](https://img.shields.io/badge/license-Apache--2.0-lightgrey)]()
+
+This repository documents my final project for the Coursera course *Introduction to TDD/BDD*,  
+where I applied **real-world software testing practices** using **Python**, **TDD** (*Test-Driven Development*),  
+and **BDD** (*Behavior-Driven Development*) principles to build a resilient microservice API.
+
 # Building Resilient Microservices with TDD & BDD – by Guy Landry Djolaud
 
 This repository documents my final project for the Coursera course *Introduction to TDD/BDD*, where I applied real-world testing practices using **Python**, **TDD (Test-Driven Development)**, and **BDD (Behavior-Driven Development)** principles to build a robust microservice API.
@@ -28,19 +40,19 @@ This project demonstrates my ability to:
 
 ## Project Structure
 
-- bin/ # 🛠️ Setup scripts (e.g., environment configuration)
-- service/ # 🧠 Business logic & API routes (core microservice logic)
+- bin/ # Setup scripts (e.g., environment configuration)
+- service/ # Business logic & API routes (core microservice logic)
   - routes.py # Main API route handlers
-- tests/ # 🧪 Unit tests for TDD (Test-Driven Development)
+- tests/ # Unit tests for TDD (Test-Driven Development)
   - test_models.py # Model-level unit tests
   - test_routes.py # Route-level unit tests
-- features/  # 📘 BDD Scenarios & Step Definitions
+- features/  # BDD Scenarios & Step Definitions
   - products.feature  # Gherkin-based feature scenarios
   - steps/ # Python step implementations
 - load_steps.py
-- flaskenv # ⚙️ Flask environment variables
-- Makefile # 🧾 Automation commands for setup/test/deploy
-- README.md # 📄 Project documentation
+- flaskenv # Flask environment variables
+- Makefile # Automation commands for setup/test/deploy
+- README.md # Project documentation
 
 ---
 
